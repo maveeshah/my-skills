@@ -1,27 +1,26 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Symlinks this repo's skills and agents into Claude Code's user-level
-# directories, so edits here are live immediately with no reinstall step.
+# Symlinks this repo's skills, agents, and plugin configuration into user-level
+# directories for both Claude Code and Antigravity, so edits here are live
+# immediately with no reinstall step.
 #
-#   ~/.claude/skills/<name>  ->  <repo>/skills/<name>
-#   ~/.claude/agents/<x>.md  ->  <repo>/agents/<x>.md
+#   Claude Code:
+#     ~/.claude/skills/<name>  ->  <repo>/skills/<name>
+#     ~/.claude/agents/<x>.md  ->  <repo>/agents/<x>.md
 #
-# Agents matter: the plugin install auto-discovers agents/, but a symlink
-# install does not. Without the second loop, /flow spawns flow-agent and gets
-# nothing.
+#   Antigravity:
+#     ~/.gemini/config/plugins/my-skills  ->  <repo>
 #
-# Adapted from mattpocock/skills scripts/link-skills.sh (MIT), which upstream
-# marks dev-only. Changes: dropped the ~/.agents/skills (Codex) destination,
-# added the agents/ loop, added --unlink and --dry-run.
-#
-#   scripts/link-skills.sh              link everything
+#   scripts/link-skills.sh              link everything for all agents
 #   scripts/link-skills.sh --dry-run    show what would happen
 #   scripts/link-skills.sh --unlink     remove only the symlinks pointing here
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-SKILL_DEST="$HOME/.claude/skills"
-AGENT_DEST="$HOME/.claude/agents"
+CLAUDE_SKILL_DEST="$HOME/.claude/skills"
+CLAUDE_AGENT_DEST="$HOME/.claude/agents"
+ANTIGRAVITY_PLUGINS_DIR="$HOME/.gemini/config/plugins"
+ANTIGRAVITY_PLUGIN_DEST="$ANTIGRAVITY_PLUGINS_DIR/my-skills"
 
 DRY_RUN=false
 UNLINK=false
@@ -53,54 +52,57 @@ guard_dest() {
   fi
 }
 
-# Remove a link only if it actually points into this repo. Never touch anything
-# else living in the destination (codebase-memory, for one, is not ours).
+# Remove a link only if it actually points into this repo.
 unlink_ours() {
   local target="$1"
   [ -L "$target" ] || return 0
   local resolved
   resolved="$(readlink -f "$target")"
   case "$resolved" in
-    "$REPO"/*) run rm "$target"; echo "unlinked $(basename "$target")" ;;
+    "$REPO"|"$REPO"/*) run rm "$target"; echo "unlinked $(basename "$target")" ;;
   esac
 }
 
-guard_dest "$SKILL_DEST"
-guard_dest "$AGENT_DEST"
+guard_dest "$CLAUDE_SKILL_DEST"
+guard_dest "$CLAUDE_AGENT_DEST"
 
 if $UNLINK; then
-  for t in "$SKILL_DEST"/* "$AGENT_DEST"/*; do
+  echo "Unlinking Claude Code symlinks..."
+  for t in "$CLAUDE_SKILL_DEST"/* "$CLAUDE_AGENT_DEST"/*; do
     [ -e "$t" ] || [ -L "$t" ] || continue
     unlink_ours "$t"
   done
+
+  echo "Unlinking Antigravity plugin..."
+  if [ -L "$ANTIGRAVITY_PLUGIN_DEST" ]; then
+    unlink_ours "$ANTIGRAVITY_PLUGIN_DEST"
+  fi
   exit 0
 fi
 
-run mkdir -p "$SKILL_DEST" "$AGENT_DEST"
+# 1. Claude Code links
+run mkdir -p "$CLAUDE_SKILL_DEST" "$CLAUDE_AGENT_DEST"
 
-linked=0
+linked_claude_skills=0
 while IFS= read -r skill_md; do
   src="$(dirname "$skill_md")"
   name="$(basename "$src")"
-  target="$SKILL_DEST/$name"
+  target="$CLAUDE_SKILL_DEST/$name"
 
-  # A real directory here is someone else's skill of the same name. Refuse
-  # rather than delete it; a name collision is a bug to fix in the repo.
   if [ -e "$target" ] && [ ! -L "$target" ]; then
     echo "error: $target exists and is not a symlink. Rename the skill in this repo." >&2
     exit 1
   fi
 
   run ln -sfn "$src" "$target"
-  echo "skill  $name"
-  linked=$((linked + 1))
+  linked_claude_skills=$((linked_claude_skills + 1))
 done < <(find "$REPO/skills" -mindepth 2 -maxdepth 2 -name SKILL.md | sort)
 
-agents=0
+linked_claude_agents=0
 if compgen -G "$REPO/agents/*.md" >/dev/null; then
   for src in "$REPO"/agents/*.md; do
     name="$(basename "$src")"
-    target="$AGENT_DEST/$name"
+    target="$CLAUDE_AGENT_DEST/$name"
 
     if [ -e "$target" ] && [ ! -L "$target" ]; then
       echo "error: $target exists and is not a symlink. Rename the agent in this repo." >&2
@@ -108,23 +110,28 @@ if compgen -G "$REPO/agents/*.md" >/dev/null; then
     fi
 
     run ln -sfn "$src" "$target"
-    echo "agent  $name"
-    agents=$((agents + 1))
+    linked_claude_agents=$((linked_claude_agents + 1))
   done
 fi
 
-# Prune links that still point into this repo but whose target is gone. Without
-# this, renaming a skill leaves the old name installed and resolvable, and the
-# model happily loads a skill the repo no longer has.
-pruned=0
-for target in "$SKILL_DEST"/* "$AGENT_DEST"/*; do
+pruned_claude=0
+for target in "$CLAUDE_SKILL_DEST"/* "$CLAUDE_AGENT_DEST"/*; do
   [ -L "$target" ] || continue
   resolved="$(readlink -f "$target" || true)"
   case "$resolved" in
-    "$REPO"/*) [ -e "$target" ] || { run rm "$target"; echo "pruned $(basename "$target")"; pruned=$((pruned + 1)); } ;;
-    "") run rm "$target"; echo "pruned $(basename "$target") (dangling)"; pruned=$((pruned + 1)) ;;
+    "$REPO"/*) [ -e "$target" ] || { run rm "$target"; echo "pruned $(basename "$target")"; pruned_claude=$((pruned_claude + 1)); } ;;
+    "") run rm "$target"; echo "pruned $(basename "$target") (dangling)"; pruned_claude=$((pruned_claude + 1)) ;;
   esac
 done
 
+# 2. Antigravity plugin link
+run mkdir -p "$ANTIGRAVITY_PLUGINS_DIR"
+if [ -e "$ANTIGRAVITY_PLUGIN_DEST" ] && [ ! -L "$ANTIGRAVITY_PLUGIN_DEST" ]; then
+  echo "error: $ANTIGRAVITY_PLUGIN_DEST exists and is not a symlink." >&2
+  exit 1
+fi
+run ln -sfn "$REPO" "$ANTIGRAVITY_PLUGIN_DEST"
+
 echo
-echo "$linked skills, $agents agents, $pruned pruned -> $SKILL_DEST, $AGENT_DEST"
+echo "Claude Code: $linked_claude_skills skills, $linked_claude_agents agents -> $CLAUDE_SKILL_DEST, $CLAUDE_AGENT_DEST"
+echo "Antigravity: plugin linked -> $ANTIGRAVITY_PLUGIN_DEST (discovering all $linked_claude_skills skills + rules)"

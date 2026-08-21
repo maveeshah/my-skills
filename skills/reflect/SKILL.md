@@ -22,15 +22,14 @@ Skip when the conversation is trivial, off-topic, or already covered by an exist
 
 ### 1. Locate the active transcript
 
-The parent finds its own transcript file before fanning out. Transcripts live at `~/.claude/projects/<slug>/<session-uuid>.jsonl`, where `<slug>` is the workspace path with every "/" turned into "-", leading dash included (so `/home/you/proj` becomes `-home-you-proj`). Derive it from the working directory rather than guessing: `~/.claude/projects/$(pwd | sed 's#/#-#g')`. Do not glob across `~/.claude/projects/*/`. That crosses workspace boundaries and reads private chats from unrelated projects.
+The parent finds its own transcript file before fanning out:
+- **Claude Code**: Transcripts live at `~/.claude/projects/<slug>/<session-uuid>.jsonl`, where `<slug>` is the workspace path with every "/" turned into "-", leading dash included (`~/.claude/projects/$(pwd | sed 's#/#-#g')`). Subagent turns are inlined with `"isSidechain": true`. Find recent files:
+  ```bash
+  ls -t ~/.claude/projects/"$(pwd | sed 's#/#-#g')"/*.jsonl 2>/dev/null | head -10
+  ```
+- **Antigravity**: Transcripts live at `~/.gemini/antigravity-cli/brain/<conversation-id>/.system_generated/logs/transcript.jsonl`.
 
-```bash
-ls -t ~/.claude/projects/"$(pwd | sed 's#/#-#g')"/*.jsonl 2>/dev/null | head -10
-```
-
-One file per session, one JSON record per line. Subagent turns are inlined in the same file tagged `"isSidechain": true`, not split into separate files, so filter on that field rather than looking for a per-subagent transcript.
-
-For each candidate, read the first JSONL line and check that `message.content[0].text` contains the conversation's opening user prompt. Take the matching path. If no path resolves, write a tight digest of the session and pass that instead.
+For each candidate, read the first JSONL line and check that the user prompt matches. If no path resolves, write a tight digest of the session and pass that instead.
 
 ### 2. Spawn three reviewers in parallel
 

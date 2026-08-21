@@ -14,7 +14,7 @@ This skill orchestrates three others: an inline mining pass (see step 1), the `s
 
 ### 0. Check for an existing skill
 
-Look recursively for `.claude/skills/**/*-mode/SKILL.md` and `~/.claude/skills/*-mode/SKILL.md` matching the user's handle. Mode skills can live in a personal category directory (`.claude/skills/<handle>/`), not only at the top level. If one exists, confirm intent with `AskUserQuestion` (unless they already said "update my skill" or similar):
+Look recursively for `.claude/skills/**/*-mode/SKILL.md`, `.agents/skills/**/*-mode/SKILL.md`, `~/.claude/skills/*-mode/SKILL.md`, or `~/.gemini/config/skills/*-mode/SKILL.md` matching the user's handle. Mode skills can live in a personal category directory, not only at the top level. If one exists, confirm intent with `AskUserQuestion` (unless they already said "update my skill" or similar):
 
 - Update the existing skill (default for repeat runs)
 - Start fresh (rare; ask why before doing it)
@@ -66,7 +66,7 @@ The **flow** skill shows the shape. Read it for granularity. Don't copy its cont
 
 Use the `skill-creator` skill (install `skill-creator@claude-plugins-official` if absent, or fall back to the **writing-for-agents** skill in this repo) to author the skill. Placement:
 
-- Path: `.claude/skills/<handle>-mode/SKILL.md` in the project, or `~/.claude/skills/<handle>-mode/` for a personal skill. Both are flat, one level: there is no category directory to nest under, and a nested path will not be discovered.
+- Path: `.claude/skills/<handle>-mode/SKILL.md` or `.agents/skills/<handle>-mode/SKILL.md` in the project, or `~/.claude/skills/<handle>-mode/` or `~/.gemini/config/skills/<handle>-mode/` for a personal skill. Flat, one level: a nested path will not be discovered.
 - Handle: the user's first name or chosen identifier.
 - Frontmatter `description`: trigger on their name + `/<handle>-mode` + "work in their style", not on generic keywords like "write code" or "review PR".
 - Frontmatter formatting: follow `skill-creator`'s YAML rules. Keep `description` as one YAML scalar; quote it or use `description: >-` with indented continuation lines when punctuation or wrapping requires it.

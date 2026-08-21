@@ -58,10 +58,21 @@ if [ -d "$HOME/.claude/skills" ]; then
     echo "$broken" | sed 's/^/  broken: /'
     fail=1
   else
-    echo "  $(find "$HOME/.claude/skills" -maxdepth 1 -type l | wc -l) skills, $(find "$HOME/.claude/agents" -maxdepth 1 -type l 2>/dev/null | wc -l) agents, none broken"
+    echo "  Claude Code: $(find "$HOME/.claude/skills" -maxdepth 1 -type l | wc -l) skills, $(find "$HOME/.claude/agents" -maxdepth 1 -type l 2>/dev/null | wc -l) agents, none broken"
   fi
 else
-  echo "  not installed (run scripts/link-skills.sh)"
+  echo "  Claude Code: not installed (run scripts/link-skills.sh)"
+fi
+
+if [ -L "$HOME/.gemini/config/plugins/my-skills" ]; then
+  if [ -e "$HOME/.gemini/config/plugins/my-skills" ]; then
+    echo "  Antigravity: plugin symlink resolves correctly"
+  else
+    echo "  Antigravity: plugin symlink is broken"
+    fail=1
+  fi
+else
+  echo "  Antigravity: plugin not symlinked (run scripts/link-skills.sh)"
 fi
 
 printf '\n'

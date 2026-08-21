@@ -36,7 +36,7 @@ Make it executable with `chmod +x`.
 
 ### 3. Add hook to settings
 
-Add to the appropriate settings file:
+**For Claude Code:**
 
 **Project** (`.claude/settings.json`):
 
@@ -78,7 +78,26 @@ Add to the appropriate settings file:
 }
 ```
 
-If the settings file already exists, merge the hook into the existing `hooks.PreToolUse` array. Don't overwrite other settings.
+**For Antigravity (`hooks.json`):**
+
+Place in `.agents/hooks.json` (project) or `~/.gemini/config/hooks.json` (global):
+
+```json
+{
+  "git-guardrails": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "command": "./scripts/block-dangerous-git.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 
 ### 4. Ask about customization
 

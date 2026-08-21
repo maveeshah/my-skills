@@ -53,7 +53,7 @@ Commit it only when the work is ambitious enough that a reviewer needs the trail
 
 ## Audit the log against the transcript
 
-At the end of the run, before handing back, check the log told the truth. Read this run's transcript at `~/.claude/projects/<slug>/<session-uuid>.jsonl`, where `<slug>` is the workspace path with every "/" turned into "-", leading dash included (so `/home/you/proj` becomes `-home-you-proj`). Derive it from the working directory rather than guessing: `~/.claude/projects/$(pwd | sed 's#/#-#g')`. Do not glob across `~/.claude/projects/*/`. That crosses workspace boundaries and reads private chats from unrelated projects. Walk the log against what actually happened:
+At the end of the run, before handing back, check the log told the truth. Read this run's transcript (Claude Code: `~/.claude/projects/<slug>/<session-uuid>.jsonl`; Antigravity: `~/.gemini/antigravity-cli/brain/<uuid>/.system_generated/logs/transcript.jsonl`). Walk the log against what actually happened:
 
 - Every row maps to a real action. Cut invented or aspirational entries.
 - Each row's evidence resolves and shows what the row claims.
