@@ -25,7 +25,9 @@ BUILTIN_SKILLS = {
 }
 
 # Cursor plugin frontmatter. Inert here; presence means an unfinished port.
-CURSOR_ONLY_KEYS = {"mode", "icon", "color", "reminder", "is_background"}
+# Scoped per kind: `color` is Cursor-only in a SKILL.md but valid in an agent.
+CURSOR_ONLY_SKILL = {"mode", "icon", "color", "reminder", "is_background"}
+CURSOR_ONLY_AGENT = {"mode", "icon", "reminder", "is_background"}
 
 # Honoured by Claude Code in a SKILL.md.
 ALLOWED_SKILL_KEYS = {
@@ -75,14 +77,20 @@ def unquote(value: str) -> str:
     return value
 
 
-def check(path: Path, expected_name: str, allowed_keys: set[str], kind: str) -> str | None:
+def check(
+    path: Path,
+    expected_name: str,
+    allowed_keys: set[str],
+    cursor_keys: set[str],
+    kind: str,
+) -> str | None:
     fm = parse_frontmatter(path)
     if fm is None:
         return None
 
-    for key in sorted(set(fm) & CURSOR_ONLY_KEYS):
+    for key in sorted(set(fm) & cursor_keys):
         errors.append(f"{rel(path)}: Cursor-only key '{key}' survived the port")
-    for key in sorted(set(fm) - allowed_keys - CURSOR_ONLY_KEYS):
+    for key in sorted(set(fm) - allowed_keys - cursor_keys):
         warnings.append(f"{rel(path)}: unrecognised key '{key}'")
 
     name = unquote(fm.get("name", ""))
@@ -121,7 +129,7 @@ def main() -> int:
         for skill_md in sorted(root.glob("*/SKILL.md")):
             n_skills += 1
             dirname = skill_md.parent.name
-            name = check(skill_md, dirname, ALLOWED_SKILL_KEYS, "directory")
+            name = check(skill_md, dirname, ALLOWED_SKILL_KEYS, CURSOR_ONLY_SKILL, "directory")
             if not name:
                 continue
             if name in seen:
@@ -140,7 +148,7 @@ def main() -> int:
     if agents_dir.is_dir():
         for agent_md in sorted(agents_dir.glob("*.md")):
             n_agents += 1
-            check(agent_md, agent_md.stem, ALLOWED_AGENT_KEYS, "file")
+            check(agent_md, agent_md.stem, ALLOWED_AGENT_KEYS, CURSOR_ONLY_AGENT, "file")
 
     for w in warnings:
         print(f"warn:  {w}")
