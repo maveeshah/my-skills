@@ -23,7 +23,7 @@ Two triggers, and the second is the one that gets missed.
 - **An empirical fork you were about to ask the human about.** If the answer is a fact you could observe by running something (behavior, timing, layout, output, performance), it is not the human's to answer. Sketch it and let the result decide. The ask is the slow path; a throwaway probe usually answers faster and hands them a result to react to instead of a decision to make.
 
 Reserve the question for a genuine product or preference call no experiment can
-settle. **No decision means no prototype** — route to the real build instead.
+settle. **No decision means no prototype.** Route to the real build instead.
 
 ## Pick a branch
 

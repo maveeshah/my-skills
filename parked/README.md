@@ -31,13 +31,13 @@ plausibly and fail on first use.
 
 Not parked, removed. Recorded here so the reasoning survives.
 
-- `automations/benny/` (pstack) — dormant Cursor and Slack issue automation. Entirely `.cursor/settings.json` and cloud automations; nothing survives a port.
-- `agents/openai.yaml` (×35, Matt) — Codex picker metadata. This repo does not ship a Codex plugin.
-- `ask-matt` — a router over Matt's skills. `flow` is the router; two routers is worse than one.
-- `implement`, `research` (Matt) — 15 and 12 lines. Covered by `flow`'s Feature playbook and by `why`.
-- `migrate-to-shoehorn`, `scaffold-exercises` — specific to Matt's own library and course products.
-- `loop-me` — Claude Code ships `/loop`.
-- `.out-of-scope/`, `.changeset/`, `CHANGELOG.md`, `docs/` — upstream repo state, not skill content.
-- `docs/guide/images/` (pstack, 2.3 MB) — Cursor-branded illustrations.
+- `automations/benny/` (pstack) was dormant Cursor and Slack issue automation, built entirely on `.cursor/settings.json` and cloud automations. Nothing survives a port.
+- `agents/openai.yaml` (35 files, Matt) is Codex picker metadata. This repo ships no Codex plugin.
+- `ask-matt` was a router over Matt's skills. `flow` is the router now, and two routers is worse than one.
+- `implement` and `research` (Matt) were 15 and 12 lines. `flow`'s Feature playbook and `why` cover them.
+- `migrate-to-shoehorn` and `scaffold-exercises` are specific to Matt's own library and course products.
+- `loop-me` is redundant. Claude Code ships `/loop`.
+- `.out-of-scope/`, `.changeset/`, `CHANGELOG.md`, and `docs/` are upstream repo state, not skill content.
+- `docs/guide/images/` (pstack, 2.3 MB) are Cursor-branded illustrations.
 
 The full originals remain under `sources/` regardless.

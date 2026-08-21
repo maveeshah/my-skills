@@ -17,8 +17,8 @@ reviewer can rerun one command and watch it work. That is the
 
 ## Modes
 
-- **Generate** — no verification skill exists yet, or the repo has no scripted way to prove behavior. Follow [GENERATE.md](GENERATE.md).
-- **Maintain** — one exists and may have rotted. A feature map goes stale the moment the app changes. Follow [MAINTAIN.md](MAINTAIN.md).
+- **Generate.** No verification skill exists yet, or the repo has no scripted way to prove behavior. Follow [GENERATE.md](GENERATE.md).
+- **Maintain.** One exists and may have rotted. A feature map goes stale the moment the app changes. Follow [MAINTAIN.md](MAINTAIN.md).
 
 Pick by what is on disk: glob `.claude/skills/verify-*/`. Nothing there means
 generate. Exactly one means maintain. More than one means ask which.

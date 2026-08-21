@@ -116,6 +116,24 @@ def check(
     return name or None
 
 
+def check_prose(path: Path) -> None:
+    """Prose rules the repo states in CLAUDE.md and flow's own reply section.
+
+    These went in as prose first and were broken within the hour, in the very
+    files that state them. That is the encode-lessons-in-structure case: make
+    it a check, not a paragraph.
+    """
+    text = path.read_text(encoding="utf-8")
+    for lineno, line in enumerate(text.splitlines(), 1):
+        if "\u2014" in line:
+            errors.append(f"{rel(path)}:{lineno}: em dash. End the sentence or use a comma")
+        for ch, name in (("\u2018", "curly quote"), ("\u2019", "curly quote"),
+                         ("\u201c", "curly quote"), ("\u201d", "curly quote")):
+            if ch in line:
+                errors.append(f"{rel(path)}:{lineno}: {name}. Use a straight quote")
+                break
+
+
 def main() -> int:
     roots = [REPO / "skills"]
     if "--all" in sys.argv:
@@ -143,6 +161,14 @@ def main() -> int:
                     f"{rel(skill_md)}: '{name}' shadows a built-in Claude Code skill"
                 )
 
+    n_prose = 0
+    for root in roots + [REPO / "agents"]:
+        if not root.is_dir():
+            continue
+        for md in sorted(root.rglob("*.md")):
+            n_prose += 1
+            check_prose(md)
+
     n_agents = 0
     agents_dir = REPO / "agents"
     if agents_dir.is_dir():
@@ -155,7 +181,7 @@ def main() -> int:
     for e in errors:
         print(f"error: {e}")
 
-    print(f"\nchecked {n_skills} skills, {n_agents} agents")
+    print(f"\nchecked {n_skills} skills, {n_agents} agents, {n_prose} prose files")
     if errors:
         print(f"{len(errors)} error(s)")
         return 1
