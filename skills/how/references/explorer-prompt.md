@@ -18,7 +18,18 @@ Other explorers are investigating different slices of the same subsystem in para
 
 ## Exploration Instructions
 
-Start by finding the relevant code. Use Glob to find directories and files, Grep to find key symbols, Read to understand the actual implementation. Don't guess from names. Read the code.
+Start by finding the relevant code.
+
+If this repo is indexed in `codebase-memory` (check `index_status`), use the
+graph rather than text search: `get_architecture` for the shape, `search_graph`
+for symbols by name, `trace_path` for call chains and data flow,
+`get_code_snippet` for a symbol's exact source. It is faster and it does not
+miss a caller because the name was spelled differently.
+
+Otherwise use Glob to find directories and files, Grep to find key symbols, and
+Read for the implementation.
+
+Either way: don't guess from names. Read the code.
 
 Follow this pattern:
 1. **Find the entry point.** What triggers this behavior? A user action, an API call, a scheduled job? Find where it starts.

@@ -69,6 +69,12 @@ Before spawning investigators, anchor the investigation in concrete code. You ne
 
 Build this inline. It's cheap, and every investigator needs it.
 
+When the repo is indexed in `codebase-memory` (`index_status` says), get the
+paths and symbols from `search_graph` rather than grepping for them: it
+resolves a name to its definition and every reference in one call, so the
+anchor is complete rather than whatever the first search happened to match. A
+wrong or partial anchor sends every investigator after the wrong history.
+
 ```bash
 # Blame target lines for last-touch commits
 git blame -L <start>,<end> <file>

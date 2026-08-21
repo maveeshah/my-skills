@@ -49,8 +49,8 @@ Spawn all explorers in a single message:
 - `readonly`: `true`
 
 Each explorer gets the same base prompt from `references/explorer-prompt.md` plus a specific exploration angle naming its slice. Each explorer should:
-- Start broad: Glob for relevant directories, Grep for key types/interfaces/class names
-- Follow the thread: from an entry point, trace the call chain (callers, callees, data flow, type definitions)
+- Start broad: `get_architecture` for the shape, then `search_graph` for the key types, interfaces, and entry points by name. Fall back to Glob and Grep when the repo is not indexed in `codebase-memory` (`index_status` says).
+- Follow the thread: `trace_path(entry_point, mode=calls)` for the call chain and `mode=data_flow` for where values go, rather than reconstructing it by hand. `get_code_snippet` pulls the exact source for a symbol.
 - Read the actual code, don't guess from file names
 - Stop when it can describe the full path from input to output (or trigger to effect) without hand-waving any step
 - Note things that are surprising, non-obvious, or that a newcomer would get wrong

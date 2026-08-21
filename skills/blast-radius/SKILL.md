@@ -28,6 +28,22 @@ For each fact the change's safety depends on, get it as far down this list as is
 
 Any safety fact you can't get to step 4, say so out loud. Don't write it up as settled. Step 4 is usually one small script that imports the same library the app ships and calls the exact function you're worried about.
 
+## Find the reach before you read
+
+This repo may be indexed in `codebase-memory`. When it is, the graph answers
+the reach question directly and beats grepping for it:
+
+- `trace_path(function_name, mode=calls)` for the call chain into and out of a changed symbol. This *is* the blast-radius question, one call.
+- `trace_path(..., mode=data_flow)` for where a changed value ends up.
+- `search_graph` to find every definition and reference of a symbol by name or qualified name.
+- `get_architecture` when the change crosses subsystems and you need the shape first.
+
+Check `index_status` first; if the repo is not indexed, `index_repository`
+once or fall back to `grep`. The graph is a faster and more complete way to
+find callers. It is **not** proof, and it does not see the things step 3 below
+is about: the JSON an API returns, a DB column, a wire format, another language
+reading the same bytes. Those still need you.
+
 ## Steps
 
 1. Read the change. The diff, the symbols it adds, changes, and deletes, and what it now does differently, including the part the diff doesn't spell out. Use `why` step 2 to pull the PR and commits.
