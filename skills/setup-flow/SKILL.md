@@ -33,9 +33,12 @@ necessarily the GitHub CLI, and an unrelated script of the same name is a
 common shadow:
 
 ```bash
-command -v gh && gh --version 2>&1 | head -1   # want "gh version 2.x", not something else
-gh auth status 2>&1 | head -3                  # want an authenticated account
+gh --version 2>&1 | grep -q 'github\.com/cli/cli' && echo "real gh" || echo "NOT the GitHub CLI"
+gh auth status 2>&1 | head -3   # want an authenticated account
 ```
+
+Match on the `github.com/cli/cli` release URL, not on the words "gh version".
+A shadowing script can print `gh version: v0.0.4` and pass a looser check.
 
 Same for `glab`. If the CLI is missing, shadowed, or unauthenticated, say so
 plainly and propose local markdown instead. Configuring a tracker the repo
