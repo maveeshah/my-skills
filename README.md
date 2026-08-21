@@ -55,7 +55,22 @@ python3 scripts/lint-skills.py
 claude plugin validate . --strict
 ```
 
+## Verify
+
+```bash
+scripts/verify.sh
+```
+
+Seven checks: frontmatter invariants, internal references, Cursor-era port
+residue, plugin manifest freshness, `claude plugin validate --strict` on all
+three targets, that the router reaches every skill, and that installed
+symlinks resolve.
+
 ## Status
 
-Being built. See `parked/README.md` for what is deliberately not installed and
-what it would take to revive each piece.
+43 skills, 2 agents, 12 playbooks. All checks pass.
+
+See `parked/README.md` for what is deliberately not installed and what each
+piece would take to revive. The short version: `babysit`, `shipping`,
+`orchestrate`, and the two autopilot playbooks need Graphite, cloud agents, or
+a real GitHub CLI, none of which are on this machine.
