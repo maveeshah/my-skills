@@ -1,0 +1,18 @@
+{
+  "name": "my-skills",
+  "version": "0.1.0",
+  "description": "A personal skill system for Claude Code: the flow router and its playbooks, 21 engineering principles, deep-module design, gated diagnosis, three-axis review, and verification that drives the real app.",
+  "author": {
+    "name": "Ameer Muavia Shah"
+  },
+  "license": "MIT",
+  "keywords": [
+    "engineering",
+    "workflow",
+    "principles",
+    "review",
+    "design",
+    "debugging"
+  ],
+  "skills": []
+}

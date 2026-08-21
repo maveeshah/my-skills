@@ -1,0 +1,23 @@
+{
+  "name": "mavee",
+  "owner": {
+    "name": "Ameer Muavia Shah"
+  },
+  "description": "A personal Claude Code skill system, merged from poteto's pstack and mattpocock/skills.",
+  "plugins": [
+    {
+      "name": "my-skills",
+      "source": "./",
+      "description": "Rigorous agent workflows: the flow router and its playbooks, 21 engineering principles, deep-module design, gated diagnosis, three-axis review, and verification that drives the real app.",
+      "category": "engineering",
+      "keywords": [
+        "engineering",
+        "workflow",
+        "principles",
+        "review",
+        "design",
+        "debugging"
+      ]
+    }
+  ]
+}
