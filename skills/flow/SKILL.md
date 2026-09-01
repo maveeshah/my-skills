@@ -1,5 +1,5 @@
 ---
-name: flow
+name: "flow"
 description: "The working style and router for this skill set: concise detailed replies, deliberate subagents, unslopped prose, simple code, verified work. Routes a task to its playbook and names the principles that shaped each decision. Use for /flow or a request to work in this style."
 disable-model-invocation: true
 ---
@@ -165,6 +165,151 @@ comes up, and are listed so the set has no orphans.
 | **git-guardrails** | Block destructive git commands with hooks. |
 | **setup-pre-commit** | Husky, lint-staged, typecheck, and tests at commit time. |
 | **setup-ts-deep-modules** | Enforce **codebase-design**'s deep modules mechanically with dependency-cruiser. |
+
+### Marketing and Growth
+
+| Skill | Reach for it when |
+|---|---|
+| **ab-testing** | Design, run, or analyze A/B tests and conversion experiments. |
+| **ad-creative** | Generate, iterate, or scale ad creative, headlines, copy variations, and formats across ad platforms. |
+| **ads** | Set up, audit, or scale paid advertising campaigns on Google, Meta, LinkedIn, and other channels. |
+| **ai-seo** | Optimize content to be cited and recommended in AI search engines and answer engines. |
+| **analytics** | Design tracking plans, implement GA4/GTM events, or build product analytics metrics. |
+| **aso** | Optimize app store presence, keywords, screenshots, and conversion rates. |
+| **attribution** | Model multi-touch marketing attribution and measure true incrementality. |
+| **churn-prevention** | Design cancel flows, dunning sequences, and customer retention systems. |
+| **co-marketing** | Plan cross-promotions, joint webinars, and integration partner marketing. |
+| **cold-email** | Write and optimize cold outbound email sequences and deliverability. |
+| **community-marketing** | Launch and grow user communities on Discord, Slack, and forums. |
+| **competitor-profiling** | Build deep competitive teardowns and intelligence dossiers. |
+| **competitors** | Map competitor positioning, feature comparisons, and alternative pages. |
+| **content-planner** | Orchestrate multi-platform social research across X, Instagram, YouTube, and TikTok into content plans and playbooks. |
+| **content-strategy** | Plan content engines, editorial calendars, and distribution loops. |
+| **copy-editing** | Tighten and sharpen existing marketing copy and eliminate AI writing tells. |
+| **copywriting** | Write landing pages, sales pages, hooks, and conversion copy. |
+| **cro** | Run conversion rate optimization audits and fix friction across funnels. |
+| **customer-research** | Run customer interviews, surveys, and voice-of-customer synthesis. |
+| **directory-submissions** | Submit products to relevant startup and software directories. |
+| **emails** | Design lifecycle, onboarding, nurture, and promotional email sequences. |
+| **events** | Plan webinars, speaking engagements, and conference presence. |
+| **free-tools** | Build free utility tools and calculators as lead magnets. |
+| **image** | Generate and prompt marketing images and visual assets. |
+| **influencer-marketing** | Build creator programs and influencer outreach campaigns. |
+| **instagram-research** | Discover viral Instagram reels, analyze engagement outliers, and extract hook formulas. |
+| **launch** | Plan and coordinate product launches across Product Hunt and social channels. |
+| **lead-magnets** | Create high-converting downloadable resources and templates. |
+| **lessie-email** | Send, manage, and automate multi-provider emails and bulk outreach campaigns. |
+| **marketing-council** | Consult simulated marketing legends for creative strategy and reviews. |
+| **marketing-ideas** | Brainstorm creative growth tactics and guerrilla campaigns. |
+| **marketing-loops** | Design self-reinforcing compounding growth loops. |
+| **marketing-plan** | Build end-to-end strategic marketing plans and growth models. |
+| **marketing-psychology** | Apply behavioral economics and cognitive biases to marketing. |
+| **offers** | Structure compelling offers, guarantees, bonuses, and pricing tiers. |
+| **onboarding** | Optimize post-signup activation and time-to-value for new users. |
+| **paywalls** | Design in-app upgrade screens, paywalls, and feature gates. |
+| **people-search** | Search, qualify, and enrich people, creators, and companies via Lessie data layer. |
+| **popups** | Create high-converting exit-intent and contextual modal overlays. |
+| **pricing** | Evaluate pricing tiers, value metrics, and monetization models. |
+| **product-marketing** | Create positioning, messaging frameworks, and value propositions. |
+| **programmatic-seo** | Build programmatic SEO page templates and datasets at scale. |
+| **prospecting** | Find and qualify B2B prospects and build targeted outreach lists. |
+| **public-relations** | Pitch journalists, land press coverage, and run PR campaigns. |
+| **referrals** | Build viral referral programs, affiliate schemes, and partner incentives. |
+| **revops** | Align lead scoring, routing, and CRM pipeline handoffs. |
+| **sales-enablement** | Create battlecards, pitch decks, one-pagers, and sales scripts. |
+| **schema** | Implement JSON-LD and structured data markup for rich search results. |
+| **seo-audit** | Audit technical SEO, crawlability, indexation, and ranking issues. |
+| **signup** | Streamline signup flows and reduce registration friction. |
+| **site-architecture** | Design website page hierarchies, silos, and internal linking structures. |
+| **sms** | Build automated SMS marketing and transactional text flows. |
+| **social** | Plan social media content calendars and audience growth strategies. |
+| **tiktok-research** | Discover high-performing TikTok videos, identify outlier patterns, and extract retention formulas. |
+| **video** | Produce AI video scripts, motion ads, and video marketing assets. |
+| **video-content-analyzer** | Analyze short-form video structure and hook mechanics using multimodal AI. |
+| **x-research** | Mine high-performing X/Twitter threads, monitor trending niche topics, and extract tweet patterns. |
+| **youtube-research** | Detect viral YouTube outliers and structure high-performing video concepts. |
+
+### Document, UI and MCP Tools
+
+| Skill | Reach for it when |
+|---|---|
+| **academy-guide** | Suggest official Anthropic educational courses and tutorials for learning features. |
+| **algorithmic-art** | Generate generative algorithmic art and interactive canvas sketches. |
+| **brand-guidelines** | Apply official Anthropic visual design standards, colors, and typography. |
+| **canvas-design** | Build styled canvas presentations and visual graphic assets. |
+| **claude-api** | Reference Anthropic API endpoints, SDK usage, streaming, caching, and model features. |
+| **discernment-nudge** | Add critical reflection and probing questions after drafting substantive artifacts. |
+| **doc-coauthoring** | Guide collaborative document authoring through a structured iterative workflow. |
+| **docx** | Create, edit, parse, or format Microsoft Word documents (.docx). |
+| **frontend-design** | Design distinctive, production-grade frontend interfaces and visual systems. |
+| **internal-comms** | Draft company newsletters, team updates, and executive communications. |
+| **mcp-builder** | Build and test Model Context Protocol (MCP) servers and tools. |
+| **pdf** | Extract text, fill forms, merge pages, or analyze PDF documents. |
+| **pptx** | Create, edit, and structure Microsoft PowerPoint presentations (.pptx). |
+| **skill-creator** | Author, test, benchmark, and improve skill definitions. |
+| **slack-gif-creator** | Create customized animated GIFs optimized for Slack emojis and messaging. |
+| **theme-factory** | Apply unified visual color schemes and design themes to artifacts. |
+| **web-artifacts-builder** | Build rich, interactive multi-component web applications and widgets. |
+| **webapp-testing** | Automate web UI and application testing using Playwright browser harnesses. |
+| **xlsx** | Create, calculate, edit, and inspect Microsoft Excel spreadsheets (.xlsx). |
+
+### Programmatic Video and Motion Graphics (Remotion)
+
+| Skill | Reach for it when |
+|---|---|
+| **remotion-best-practices** | Master router for Remotion video creation, composition, animation, and rendering workflows. |
+| **remotion-captions** | Transcribe, display, and animate subtitles and captions in Remotion videos. |
+| **remotion-create** | Scaffold and build new Remotion video projects and compositions. |
+| **remotion-docs** | Search and retrieve official Remotion API documentation and guides. |
+| **remotion-interactivity** | Structure Remotion React markup for studio interactivity and live editing. |
+| **remotion-maps** | Animate static, 2D, and 3D maps, routes, and geographic flyovers in Remotion. |
+| **remotion-markup** | React markup, animation springs, sequencing, typography, audio, and visual effects in Remotion. |
+| **remotion-multimedia** | Inspect media metadata, audio durations, and video dimensions in the browser. |
+| **remotion-render** | Render Remotion compositions to MP4 videos, GIFs, transparent videos, and stills. |
+| **remotion-saas** | Architect Remotion-powered SaaS applications, Lambda rendering, and web player embeds. |
+| **remotion-studio** | Launch and configure the Remotion Studio preview server. |
+| **remotion-upgrade** | Upgrade Remotion dependencies, packages, and agent skill sets. |
+
+### Agent Workflows and Superpowers
+
+| Skill | Reach for it when |
+|---|---|
+| **brainstorming** | Explore creative feature concepts before writing plans or specifications. |
+| **dispatching-parallel-agents** | Fan out multiple independent tasks across parallel subagents. |
+| **executing-plans** | Step through an approved implementation plan with systematic checkpoint reviews. |
+| **finishing-a-development-branch** | Integrate, clean up, and land a completed feature branch. |
+| **receiving-code-review** | Process and implement feedback received from code reviewers. |
+| **requesting-code-review** | Request a structured review on completed work before merging. |
+| **subagent-driven-development** | Execute plans with fresh subagents per task within the session. |
+| **systematic-debugging** | Investigate and trace root causes before proposing any code fixes. |
+| **test-driven-development** | Build features and fixes test-first through strict red-green loops. |
+| **using-git-worktrees** | Create isolated git worktrees for independent feature exploration. |
+| **using-superpowers** | Discover and invoke available agent skills and rules. |
+| **verification-before-completion** | Verify real system behavior and tests before declaring tasks complete. |
+| **writing-plans** | Write detailed, actionable implementation plans from settled specifications. |
+| **writing-skills** | Author and test new skill definitions with subagents. |
+
+### Context Engineering and Agent Architecture
+
+| Skill | Reach for it when |
+|---|---|
+| **advanced-evaluation** | Build LLM-as-judge evaluation pipelines, rubrics, and direct scoring. |
+| **bdi-mental-states** | Model agent beliefs, desires, and intentions with structured ontologies. |
+| **context-compression** | Implement context compaction, semantic pruning, and token reduction. |
+| **context-degradation** | Diagnose context drift, distraction, and lost-in-the-middle degradation. |
+| **context-fundamentals** | Ground context engineering concepts, memory layouts, and token budgets. |
+| **context-optimization** | Optimize prompt caching, observation masking, and KV-cache efficiency. |
+| **evaluation** | Design deterministic evaluation suites and benchmark metrics for agents. |
+| **filesystem-context** | Implement file-backed scratchpads and offloaded tool context stores. |
+| **harness-engineering** | Architect autonomous agent execution harnesses and research loops. |
+| **hosted-agents** | Build secure sandbox execution environments for remote agents. |
+| **latent-briefing** | Implement cross-agent memory sharing and attention-matching briefings. |
+| **long-horizon-prompting** | Craft robust briefing prompts for multi-hour autonomous agent runs. |
+| **memory-systems** | Build persistent semantic memory and entity stores across agent sessions. |
+| **multi-agent-patterns** | Coordinate supervisor, worker, and peer multi-agent architectures. |
+| **project-development** | Evaluate whether LLM primitives match product architecture requirements. |
+| **self-improvement-loops** | Build recursive optimization loops that evaluate and refine workflows. |
+| **tool-design** | Design minimal, expressive tool interfaces that reduce agent hallucinations. |
 
 Driving a PR to green, landing a stack, and multi-day autonomous programs are
 not available in this repo. They needed Graphite, a real GitHub CLI, and cloud
