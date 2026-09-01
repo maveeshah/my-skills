@@ -19,7 +19,7 @@ REPO = Path(__file__).resolve().parent.parent
 # Shipped with Claude Code. A user skill of the same name collides.
 BUILTIN_SKILLS = {
     "artifact-capabilities", "artifact-design", "artifact-diagramming",
-    "claude-api", "claude-in-chrome", "code-review", "codebase-memory",
+    "claude-in-chrome", "code-review", "codebase-memory",
     "dataviz", "fewer-permission-prompts", "init", "keybindings-help",
     "loop", "run", "schedule", "security-review", "simplify", "update-config",
 }

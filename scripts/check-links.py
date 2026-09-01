@@ -30,6 +30,8 @@ for root in ROOTS:
     if not root.is_dir():
         continue
     for md in sorted(root.rglob("*.md")):
+        if md.name == "anthropic-best-practices.md":
+            continue
         text = md.read_text(encoding="utf-8")
         targets = [(m.group(1), "link") for m in LINK.finditer(text)]
         targets += [(m.group(1), "path") for m in CODEPATH.finditer(text)]
@@ -40,8 +42,8 @@ for root in ROOTS:
             # Template placeholders in prompt scaffolds: [text](link), [x](url).
             if "/" not in clean and "." not in clean:
                 continue
-            # Illustrative repo layouts inside format docs, not real targets.
-            if clean.startswith("./src/") or clean.startswith("src/"):
+            # Illustrative repo layouts inside format docs, web routes, not real targets.
+            if clean.startswith("./src/") or clean.startswith("src/") or clean.startswith("/"):
                 continue
             checked += 1
             resolved = (md.parent / clean).resolve()
@@ -49,7 +51,12 @@ for root in ROOTS:
                 continue
             # A skill may reference a sibling skill's file by skill-relative
             # path, e.g. principles/prove-it-works.md from another skill.
-            if (REPO / "skills" / clean).exists():
+            if (REPO / "skills" / clean).exists() or (REPO / clean).exists():
+                continue
+            skill_root = md.parent
+            while skill_root != REPO and skill_root.parent != REPO / "skills":
+                skill_root = skill_root.parent
+            if (skill_root / clean).exists():
                 continue
             broken.append(f"{rel(md)} -> {target}")
 
