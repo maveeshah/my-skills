@@ -1,5 +1,5 @@
 ---
-name: tdd
+name: "tdd"
 description: "Test-driven development: what a good test is, where its seam goes, the anti-patterns, and the rules of the red-green loop. Also decides when a test is not worth writing. Use when building features or fixing bugs test-first, when the user mentions red-green-refactor or asks for a failing test or a regression test, or when deciding whether a bug has a cheap enough test path to be worth one."
 ---
 

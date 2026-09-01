@@ -1,6 +1,6 @@
 ---
-name: review
-description: "Three-axis review of a diff: Standards (does it follow this repo's documented conventions and avoid known smells), Spec (does it do what was actually asked, and nothing more), and Adversarial (what breaks that nobody thought to look for). Runs the axes as parallel sub-agents, then rules on every finding as lead. Use for /review, \"review this branch\", \"tear this apart\", \"stress test this code\", or \"find blind spots\"."
+name: "review"
+description: "Three-axis review of a diff: Standards (does it follow this repo's documented conventions and avoid known smells), Spec (does it do what was actually asked, and nothing more), and Adversarial (what breaks that nobody thought to look for). Runs the axes as parallel sub-agents, then rules on every finding as lead. Use for /review, 'review this branch', 'tear this apart', 'stress test this code', or 'find blind spots'."
 disable-model-invocation: true
 ---
 

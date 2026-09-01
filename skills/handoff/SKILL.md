@@ -1,5 +1,5 @@
 ---
-name: handoff
+name: "handoff"
 description: "Hand work across a session boundary in either direction: pause cleanly with a resume note a cold-start agent can pick up, or take over work someone else left in flight. Use for pause safely, I need to go offline, before context compacts, take over this, resume this conversation, or pick up where X left off."
 disable-model-invocation: true
 argument-hint: "What will the next session focus on? (or leave blank)"

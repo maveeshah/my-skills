@@ -1,6 +1,6 @@
 ---
-name: verify
-description: "Generate or maintain a project-local verification skill that drives the real app the way a user does, in any language or framework, and proves behavior with captured evidence. Use for /verify, \"make a control skill for this repo\", \"audit the verify skill\", or when a project has no scripted way to prove UI, CLI, or service behavior."
+name: "verify"
+description: "Generate or maintain a project-local verification skill that drives the real app the way a user does, in any language or framework, and proves behavior with captured evidence. Use for /verify, 'make a control skill for this repo', 'audit the verify skill', or when a project has no scripted way to prove UI, CLI, or service behavior."
 disable-model-invocation: true
 ---
 

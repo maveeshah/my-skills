@@ -1,5 +1,5 @@
 ---
-name: principles
+name: "principles"
 description: "Twenty-one atomic engineering principles, each naming when it applies. Use when a decision needs grounding: sizing a diff, choosing types, designing a boundary, debugging, delegating, or declaring work done. Read the named leaf in full before citing it."
 ---
 

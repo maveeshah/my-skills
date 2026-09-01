@@ -1,5 +1,5 @@
 ---
-name: diagnose
+name: "diagnose"
 description: "Gated diagnosis loop for hard bugs and performance regressions. Build a tight red-capable feedback loop first, reproduce and minimise, rank falsifiable hypotheses, instrument one variable at a time, then fix with a regression test. Use when the user says diagnose or debug this, or reports something broken, throwing, failing, hanging, or slow."
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: huh
+name: "huh"
 description: "Stop. That last message did not land. Re-pitch it in plain language, no jargon."
 disable-model-invocation: true
 ---

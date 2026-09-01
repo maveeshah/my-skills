@@ -1,5 +1,5 @@
 ---
-name: prototype
+name: "prototype"
 description: "Build a throwaway prototype to settle a design question or an empirical fork by observing it, instead of asking a question a quick sketch could answer. Use for prototype, mock it up, sketch this, try this layout, or when checking whether a state model or logic feels right."
 disable-model-invocation: true
 ---

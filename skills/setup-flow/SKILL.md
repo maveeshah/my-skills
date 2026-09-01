@@ -1,5 +1,5 @@
 ---
-name: setup-flow
+name: "setup-flow"
 description: "Configure a repo for these skills: issue tracker, triage label vocabulary, domain doc layout, and optionally per-role model choices. Run once per repo before first use of to-tickets, to-spec, triage, or wayfinder. Use for /setup-flow or configure my skills for this repo."
 disable-model-invocation: true
 ---
